@@ -33,7 +33,7 @@ python3 skills/trending-news-video/scripts/build_news_video.py \
 
 ## 版本记录
 
-当前版本：`v1.0.0` · 2026-11-13
+当前版本：`v1.1.0` · 2026-11-13
 完整变化记录见 [CHANGELOG.md](CHANGELOG.md)。
 
 
