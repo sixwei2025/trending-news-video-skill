@@ -163,9 +163,9 @@ def main():
     parser.add_argument("--project-dir", type=Path, required=True, help="Project directory")
     parser.add_argument(
         "--voice",
-        default="news_anchor",
-        choices=["news_anchor", "yuanliuwei"],
-        help="news_anchor (zh-CN-YunjianNeural) or yuanliuwei (Voicebox clone)",
+        default="yuanliuwei",
+        choices=["yuanliuwei", "news_anchor"],
+        help="yuanliuwei (Voicebox clone, default) or news_anchor (zh-CN-YunjianNeural)",
     )
     args = parser.parse_args()
 

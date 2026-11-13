@@ -13,54 +13,85 @@ import { SpotlightDoc } from './components/SpotlightDoc';
 
 const FONT = '"PingFang SC", "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", sans-serif';
 
-/** Exact durations matching generated news-anchor TTS segments + breathing gaps (30fps) */
-export const SCENE_FRAMES = [176, 330, 254, 271, 321, 412, 255, 233]; // Total = 2252 frames = 75.07s
+/** Exact durations matching Voicebox 袁六伟 original voice segments + breathing gaps (30fps) */
+export const SCENE_FRAMES = [175, 323, 251, 260, 347, 432, 307, 216]; // Total = 2311 frames = 77.03s
 
-/** Top 8-segment broadcast news progress bar */
+/** Top 8-segment broadcast news progress bar + Live Investigative Dossier HUD */
 const NewsProgressBar: React.FC<{ starts: number[]; durations: number[] }> = ({ starts, durations }) => {
   const frame = useCurrentFrame();
+  const sec = Math.floor(frame / 30);
+  const ff = frame % 30;
+  const tc = `00:${String(Math.floor(sec / 60)).padStart(2, '0')}:${String(sec % 60).padStart(2, '0')}:${String(ff).padStart(2, '0')}`;
   return (
     <div
       style={{
         position: 'absolute',
-        top: 42,
+        top: 34,
         left: 48,
         right: 48,
-        height: 6,
-        display: 'flex',
-        gap: 8,
         zIndex: 80,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 10,
       }}
     >
-      {durations.map((dur, i) => {
-        const st = starts[i];
-        const progress = interpolate(frame, [st, st + dur], [0, 100], {
-          extrapolateLeft: 'clamp',
-          extrapolateRight: 'clamp',
-        });
-        const isDone = frame >= st + dur;
-        return (
-          <div
-            key={i}
-            style={{
-              flex: 1,
-              height: '100%',
-              backgroundColor: 'rgba(255,255,255,0.18)',
-              borderRadius: 4,
-              overflow: 'hidden',
-            }}
-          >
+      <div style={{ height: 6, display: 'flex', gap: 8 }}>
+        {durations.map((dur, i) => {
+          const st = starts[i];
+          const progress = interpolate(frame, [st, st + dur], [0, 100], {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+          });
+          const isDone = frame >= st + dur;
+          return (
             <div
+              key={i}
               style={{
-                width: `${progress}%`,
+                flex: 1,
                 height: '100%',
-                backgroundColor: isDone ? 'rgba(255,255,255,0.85)' : '#ff2a3c',
-                boxShadow: !isDone && progress > 0 ? '0 0 10px #ff2a3c' : 'none',
+                backgroundColor: 'rgba(255,255,255,0.18)',
+                borderRadius: 4,
+                overflow: 'hidden',
               }}
-            />
-          </div>
-        );
-      })}
+            >
+              <div
+                style={{
+                  width: `${progress}%`,
+                  height: '100%',
+                  backgroundColor: isDone ? 'rgba(255,255,255,0.85)' : '#ff2a3c',
+                  boxShadow: !isDone && progress > 0 ? '0 0 10px #ff2a3c' : 'none',
+                }}
+              />
+            </div>
+          );
+        })}
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          fontFamily: FONT,
+          fontSize: 20,
+          fontWeight: 700,
+          color: 'rgba(255,255,255,0.72)',
+          letterSpacing: 1,
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span
+            style={{
+              width: 8,
+              height: 8,
+              borderRadius: 4,
+              backgroundColor: '#ff2a3c',
+              boxShadow: '0 0 8px #ff2a3c',
+            }}
+          />
+          <span>深度商业调查档案 · 袁六伟</span>
+        </div>
+        <div style={{ fontFamily: 'monospace', color: '#ffd60a', fontWeight: 800 }}>TC {tc}</div>
+      </div>
     </div>
   );
 };
@@ -449,8 +480,59 @@ const SceneStockAndCutting: React.FC = () => {
             { x: 1.5, y: 38.5, w: 26, h: 8, style: 'yellow_hl', delayFrames: 28 },
             { x: 52.5, y: 38.5, w: 46, h: 58, style: 'red_box', delayFrames: 42 },
           ]}
-          zoomTo={{ scale: 1.08, originX: '30%', originY: '35%' }}
+          zoomTo={{ scale: 1.18, originX: '30%', originY: '35%' }}
         />
+      </div>
+
+      {/* Phase 1.5: Vox-style Live Stat Counter Bar (below stock chart) */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 1045,
+          left: 50,
+          right: 50,
+          display: 'flex',
+          gap: 20,
+          opacity: interpolate(frame, [16, 30, 165, 180], [0, 1, 1, 0.25], {
+            extrapolateLeft: 'clamp',
+            extrapolateRight: 'clamp',
+          }),
+        }}
+      >
+        <div
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(22, 14, 20, 0.92)',
+            border: '2px solid rgba(255, 42, 60, 0.65)',
+            borderRadius: 18,
+            padding: '22px 28px',
+            boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
+          }}
+        >
+          <div style={{ fontFamily: FONT, fontSize: 24, color: '#fca5a5', fontWeight: 700 }}>
+            NVDA 盘中最大跳水
+          </div>
+          <div style={{ fontFamily: FONT, fontSize: 54, color: '#ff2a3c', fontWeight: 900, marginTop: 6 }}>
+            -{interpolate(frame, [18, 65], [0, 13.48], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }).toFixed(2)}%
+          </div>
+        </div>
+        <div
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(20, 22, 30, 0.92)',
+            border: '2px solid rgba(255, 214, 10, 0.55)',
+            borderRadius: 18,
+            padding: '22px 28px',
+            boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
+          }}
+        >
+          <div style={{ fontFamily: FONT, fontSize: 24, color: '#fde047', fontWeight: 700 }}>
+            单日市值瞬间蒸发
+          </div>
+          <div style={{ fontFamily: FONT, fontSize: 54, color: '#ffd60a', fontWeight: 900, marginTop: 6 }}>
+            -${Math.round(interpolate(frame, [18, 65], [0, 5400], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }))}亿
+          </div>
+        </div>
       </div>
 
       {/* Phase 2: 3-Force Cutting Cards pop over */}
@@ -513,8 +595,16 @@ const SceneStockAndCutting: React.FC = () => {
   );
 };
 
-/** Scene 2: Nov 8 Internal Letter + Dynamic Highlighter Swipe */
+/** Scene 2: Nov 8 Internal Letter + Dynamic Highlighter Swipe + 72h Blitz Timeline */
 const SceneInternalLetter: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const tlPop = spring({ frame: Math.max(0, frame - 40), fps, config: { damping: 16, stiffness: 140 } });
+  const steps = [
+    { d: '11.08', t: '内部信致歉' },
+    { d: '11.10', t: '律所与国会介入' },
+    { d: '11.12', t: '闪电卸任CEO' },
+  ];
   return (
     <AbsoluteFill>
       <EditorialBackdrop accent="rgba(255, 195, 0, 0.16)" />
@@ -529,14 +619,52 @@ const SceneInternalLetter: React.FC = () => {
           src="crop_09_ifeng.png"
           aspectRatio={1295 / 1310}
           sourceBadge="公开报道 · 致公司全体的一封信"
-          cardWidth={940}
+          cardWidth={900}
           highlights={[
             { x: 0.5, y: 0.5, w: 96, h: 9.5, style: 'red_box', delayFrames: 12 },
             { x: 0.5, y: 24, w: 96, h: 17, style: 'yellow_hl', delayFrames: 30 },
             { x: 19, y: 58.5, w: 58, h: 22.5, style: 'red_box', delayFrames: 54 },
           ]}
-          zoomTo={{ scale: 1.12, originX: '48%', originY: '68%' }}
+          zoomTo={{ scale: 1.18, originX: '48%', originY: '68%' }}
         />
+      </div>
+      {/* Vox 72-Hour Blitz Timeline Bar */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 1380,
+          left: 56,
+          right: 56,
+          opacity: tlPop,
+          transform: `translateY(${interpolate(tlPop, [0, 1], [40, 0])}px)`,
+          backgroundColor: 'rgba(15, 18, 28, 0.94)',
+          border: '1.5px solid rgba(255,214,10,0.45)',
+          borderRadius: 18,
+          padding: '20px 28px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.75)',
+        }}
+      >
+        {steps.map((s, idx) => (
+          <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div
+              style={{
+                backgroundColor: idx === 2 ? '#ff2a3c' : '#ffd60a',
+                color: idx === 2 ? '#fff' : '#090b10',
+                fontFamily: FONT,
+                fontSize: 22,
+                fontWeight: 900,
+                padding: '6px 14px',
+                borderRadius: 8,
+              }}
+            >
+              {s.d}
+            </div>
+            <div style={{ fontFamily: FONT, fontSize: 26, fontWeight: 800, color: '#ffffff' }}>{s.t}</div>
+          </div>
+        ))}
       </div>
       <SubtitleBar
         showFrames={246}
@@ -913,7 +1041,7 @@ const SceneEnding: React.FC = () => {
       <div
         style={{
           position: 'absolute',
-          top: 620,
+          top: 520,
           left: 68,
           right: 68,
           textAlign: 'center',
@@ -923,17 +1051,25 @@ const SceneEnding: React.FC = () => {
       >
         <div
           style={{
-            width: 80,
-            height: 6,
-            backgroundColor: '#e6192e',
-            margin: '0 auto 36px',
-            borderRadius: 3,
+            display: 'inline-block',
+            backgroundColor: '#C8102E',
+            color: '#ffffff',
+            fontFamily: FONT,
+            fontSize: 26,
+            fontWeight: 800,
+            padding: '10px 28px',
+            borderRadius: 999,
+            marginBottom: 28,
+            letterSpacing: 1.5,
+            boxShadow: '0 8px 24px rgba(200,16,46,0.5)',
           }}
-        />
+        >
+          袁六伟 · 台州汇芯 ｜ 深度商业拆解
+        </div>
         <div
           style={{
             fontFamily: FONT,
-            fontSize: 54,
+            fontSize: 52,
             fontWeight: 900,
             color: '#ffffff',
             lineHeight: 1.4,
@@ -944,7 +1080,7 @@ const SceneEnding: React.FC = () => {
         </div>
         <div
           style={{
-            marginTop: 22,
+            marginTop: 18,
             fontFamily: FONT,
             fontSize: 58,
             fontWeight: 900,
@@ -954,6 +1090,33 @@ const SceneEnding: React.FC = () => {
           }}
         >
           没有商业领袖，能大过国家意志
+        </div>
+
+        {/* 3 Core Takeaways Summary Box */}
+        <div
+          style={{
+            marginTop: 48,
+            backgroundColor: 'rgba(12, 15, 24, 0.88)',
+            border: '1.5px solid rgba(255,255,255,0.18)',
+            borderLeft: '8px solid #C8102E',
+            borderRadius: 20,
+            padding: '28px 36px',
+            textAlign: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 18,
+            boxShadow: '0 24px 60px rgba(0,0,0,0.8)',
+          }}
+        >
+          <div style={{ fontFamily: FONT, fontSize: 30, fontWeight: 800, color: '#f8fafc' }}>
+            <span style={{ color: '#ff2a3c', marginRight: 12 }}>01</span>私德只是导火索，算力彻底切割才是本质
+          </div>
+          <div style={{ fontFamily: FONT, fontSize: 30, fontWeight: 800, color: '#f8fafc' }}>
+            <span style={{ color: '#ffd60a', marginRight: 12 }}>02</span>左右逢源时代终结，硅谷巨头全面政治站队
+          </div>
+          <div style={{ fontFamily: FONT, fontSize: 30, fontWeight: 800, color: '#f8fafc' }}>
+            <span style={{ color: '#38bdf8', marginRight: 12 }}>03</span>放弃幻想，国产全栈自主算力是唯一出路
+          </div>
         </div>
       </div>
 

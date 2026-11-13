@@ -46,13 +46,54 @@ export const SpotlightDoc: React.FC<SpotlightDocProps> = ({
     extrapolateRight: 'clamp',
   });
 
-  // Gentle camera zoom towards key evidence
-  const camZoom = zoomTo
-    ? interpolate(frame, [20, 120], [1, zoomTo.scale], {
+  // Connected Pan & Zoom across highlights (OpenScreen / Vox camera paradigm)
+  const firstDelay = highlights[0]?.delayFrames ?? 12;
+  const zoomScale = zoomTo?.scale ?? 1.24;
+  const camZoom = interpolate(
+    frame,
+    [0, Math.max(4, firstDelay - 6), firstDelay + 18, 220],
+    [1, 1.02, zoomScale, zoomScale + 0.04],
+    { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
+  );
+
+  // Compute connected pan center (smoothly gliding from highlight 0 -> highlight 1 -> highlight 2)
+  let targetX = 50;
+  let targetY = 45;
+  if (highlights.length === 1) {
+    targetX = highlights[0].x + highlights[0].w / 2;
+    targetY = highlights[0].y + highlights[0].h / 2;
+  } else if (highlights.length >= 2) {
+    const d0 = highlights[0].delayFrames ?? 12;
+    const d1 = highlights[1].delayFrames ?? 30;
+    const c0x = highlights[0].x + highlights[0].w / 2;
+    const c0y = highlights[0].y + highlights[0].h / 2;
+    const c1x = highlights[1].x + highlights[1].w / 2;
+    const c1y = highlights[1].y + highlights[1].h / 2;
+    if (highlights.length === 2) {
+      targetX = interpolate(frame, [d0, d1 - 4, d1 + 14], [c0x, c0x, c1x], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
-      })
-    : interpolate(frame, [0, 150], [1, 1.03], { extrapolateRight: 'clamp' });
+      });
+      targetY = interpolate(frame, [d0, d1 - 4, d1 + 14], [c0y, c0y, c1y], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+      });
+    } else {
+      const d2 = highlights[2].delayFrames ?? 48;
+      const c2x = highlights[2].x + highlights[2].w / 2;
+      const c2y = highlights[2].y + highlights[2].h / 2;
+      targetX = interpolate(frame, [d0, d1 - 4, d1 + 12, d2 - 4, d2 + 12], [c0x, c0x, c1x, c1x, c2x], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+      });
+      targetY = interpolate(frame, [d0, d1 - 4, d1 + 12, d2 - 4, d2 + 12], [c0y, c0y, c1y, c1y, c2y], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+      });
+    }
+  }
+  const clampOriginX = `${Math.max(20, Math.min(80, targetX)).toFixed(1)}%`;
+  const clampOriginY = `${Math.max(18, Math.min(82, targetY)).toFixed(1)}%`;
 
   const imgUrl = staticFile(`assets/${src}`);
 
@@ -115,7 +156,7 @@ export const SpotlightDoc: React.FC<SpotlightDocProps> = ({
             width: '100%',
             height: '100%',
             transform: `scale(${camZoom})`,
-            transformOrigin: zoomTo ? `${zoomTo.originX} ${zoomTo.originY}` : '50% 45%',
+            transformOrigin: `${clampOriginX} ${clampOriginY}`,
           }}
         >
           {/* Base desaturated & darkened layer */}

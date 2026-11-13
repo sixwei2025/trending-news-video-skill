@@ -44,12 +44,12 @@ def mix_final_audio_and_video(
     }
 
     filter_chains = [
-        # Voice normalization & crisp EQ
-        "[1:a]highpass=f=80,acompressor=threshold=-18dB:ratio=3:attack=5:release=60,volume=1.45[voice]",
+        # Voice normalization & crisp EQ, split for sidechain + mix
+        "[1:a]highpass=f=80,acompressor=threshold=-18dB:ratio=3:attack=5:release=60,volume=1.35,asplit=2[v_sc][v_mix]",
         # BGM trimmed & faded
-        f"[2:a]atrim=0:{total_dur:.3f},afade=t=in:st=0:d=1.2,afade=t=out:st={max(0, total_dur-2.0):.3f}:d=2.0,volume=0.20[bgm_raw]",
+        f"[2:a]atrim=0:{total_dur:.3f},afade=t=in:st=0:d=1.2,afade=t=out:st={max(0, total_dur-2.0):.3f}:d=2.0,volume=0.35[bgm_raw]",
         # Sidechain ducking BGM under voice
-        "[bgm_raw][voice]sidechaincompress=threshold=0.015:ratio=6:attack=15:release=280[bgm_ducked]",
+        "[bgm_raw][v_sc]sidechaincompress=threshold=0.03:ratio=4:attack=30:release=350[bgm_ducked]",
     ]
 
     sfx_labels = []
@@ -61,11 +61,11 @@ def mix_final_audio_and_video(
         filter_chains.append(f"[{in_idx}:a]volume={vol},adelay={delay_ms}|{delay_ms}[{lbl}]")
         sfx_labels.append(f"[{lbl}]")
 
-    all_mix = "[voice][bgm_ducked]" + "".join(sfx_labels)
+    all_mix = "[v_mix][bgm_ducked]" + "".join(sfx_labels)
     num_mix = 2 + len(sfx_labels)
     filter_chains.append(
         f"{all_mix}amix=inputs={num_mix}:duration=first:dropout_transition=0:normalize=0,"
-        "alimiter=limit=0.92[final_a]"
+        "loudnorm=I=-15:TP=-1.5:LRA=9[final_a]"
     )
 
     cmd = [
@@ -95,7 +95,7 @@ def main():
     parser = argparse.ArgumentParser(description="Build complete Trending News investigative video")
     parser.add_argument("--project-dir", type=Path, required=True, help="Project working directory")
     parser.add_argument("--config", type=Path, required=True, help="Path to story_config.json")
-    parser.add_argument("--voice", default="news_anchor", choices=["news_anchor", "yuanliuwei"])
+    parser.add_argument("--voice", default="yuanliuwei", choices=["yuanliuwei", "news_anchor"])
     parser.add_argument("--bgm", type=Path, default=Path.home() / "lab/bgm/DigitalLemonade.mp3")
     args = parser.parse_args()
 
