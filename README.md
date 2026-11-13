@@ -3,10 +3,10 @@
 <img src="assets/showcase/hero-banner.jpg" alt="汇芯·热点新闻深扒视频总控 — 多源真实网页取证 + 聚光灯灰化划重点 + 央媒播音腔 + Remotion 杂志级竖屏成片" width="100%" />
 
 # 汇芯·热点新闻深扒视频总控
-### `trending-news-video-skill` · 真实外媒/行情取证 + 聚光灯灰化划重点 + 新闻播报腔 + 侧链混音 9:16 竖屏成片
+### `trending-news-video-skill` · 竖屏 3:4 杂志封面 (`1080×1440`) + 横屏 16:9 调查正片 (`1920×1080`) + 袁六伟原声 + 侧链混音
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Specification-C8102E?style=flat-square)](https://agentskills.io)
-[![Engine](https://img.shields.io/badge/Engine-Remotion%204.0%20+%20Playwright%20+%20FFmpeg%20+%20EdgeTTS-18181B?style=flat-square)](#五环境依赖与-3-分钟安装)
+[![Engine](https://img.shields.io/badge/Engine-Remotion%204.0%20+%20Playwright%20+%20FFmpeg%20+%20Voicebox-18181B?style=flat-square)](#五环境依赖与-3-分钟安装)
 [![Quality](https://img.shields.io/badge/Quality-Vox%20调查美学%20+%20四重自动质检-B45309?style=flat-square)](#三五步全自动流水线与质量把关)
 [![License](https://img.shields.io/badge/License-MIT-059669?style=flat-square)](LICENSE)
 
@@ -14,17 +14,17 @@
 > 📮 更多 AI 视频与自动化实战，关注 **公众号 / 视频号：袁六伟**
 
 **告别干瘪口播与满屏看不清的网页截图，把每一条科技/商业热点做成 95 分《经济学人》/ Vox 级深度调查短视频。**  
-给它一个热点事件或分镜配置，全自动跑完：**Playwright 多源无弹窗网页/行情取证 → 三层剥洋葱商业博弈脚本 → 央媒新闻播报腔与 16 处节拍音效帧级对齐 → Remotion 聚光灯背景灰化 + 红黄荧光笔动态划重点 → 侧链闪避 BGM 与 `-15 LUFS` 响度标准化 → 自动推送本地视频中心**。
+给它一个热点事件或分镜配置，全自动跑完：**Playwright 多源无弹窗网页/行情取证 → 三层剥洋葱商业博弈脚本 → 默认袁六伟本人 Voicebox 原声与 16 处节拍音效帧级对齐 → Remotion 16:9 横屏聚光灯背景灰化 + 红黄荧光笔划重点 + 3:4 竖屏杂志封面渲染 → 侧链闪避 BGM 与 `-15 LUFS` 响度标准化 → 自动推送本地视频中心**。
 
 ```bash
 # 一键安装 Skill
 npx skills add sixwei2025/trending-news-video-skill
 
-# 一键运行完整热点深扒视频产线（配音+音效+Remotion渲染+BGM侧链混音+自动质检）
+# 一键运行完整热点深扒视频产线（配音+音效+Remotion 16:9正片与3:4封面渲染+BGM侧链混音+自动质检）
 python3 skills/trending-news-video/scripts/build_news_video.py \
   --project-dir ~/热点视频_黄仁勋 \
   --config skills/trending-news-video/templates/story_config.example.json \
-  --voice news_anchor
+  --voice yuanliuwei
 ```
 
 [看真实成片画廊](#一看真实成片效果与正反对比) · [一句话快速开始](#二一句话快速开始) · [五步全自动流水线](#三五步全自动流水线与质量把关) · [核心视觉与声学公式](#四高频翻车点根治方案与核心公式) · [安装与目录结构](#五环境依赖与仓库结构)
@@ -33,7 +33,7 @@ python3 skills/trending-news-video/scripts/build_news_video.py \
 
 ## 版本记录
 
-当前版本：`v1.1.0` · 2026-11-13
+当前版本：`v1.2.0` · 2026-11-13
 完整变化记录见 [CHANGELOG.md](CHANGELOG.md)。
 
 
@@ -57,10 +57,10 @@ https://github.com/sixwei2025/trending-news-video-skill
 
 以下画面全部由本 Skill（`trending-news-video`）**真实渲染导出**，所有新闻报道与股价行情均为 Playwright 实时无弹窗取证截图：
 
-| 0.01s 杂志级首帧封面 (`CoverStill`) | 真实行情取证 + 聚光灯灰化划重点 | 海外媒体报道 + 红色荧光框聚焦 |
+| 竖屏 3:4 杂志级封面 (`1080×1440`) | 16:9 横屏正片：真实行情聚光灯划重点 | 16:9 横屏正片：内部致歉信与72h时间轴 |
 | :---: | :---: | :---: |
-| <img src="assets/showcase/cover-jensen.png" width="280" alt="黄仁勋辞职深扒视频杂志级封面" /> | <img src="assets/showcase/frame-stock-spotlight.png" width="280" alt="真实股价截图聚光灯划重点" /> | <img src="assets/showcase/frame-cbs-spotlight.png" width="280" alt="外媒报道红色荧光框聚焦" /> |
-| 真实人物纪实照 + 3张微缩取证卡 + 132px 大字 | 顶部 8 段进度条 + 灰化底图 + 原彩荧光框 | macOS 取证框 + 3D 微倾角 + 毛玻璃高亮字幕 |
+| <img src="assets/showcase/cover-jensen.png" width="220" alt="黄仁勋辞职深扒视频3:4杂志级封面" /> | <img src="assets/showcase/frame-stock-spotlight.png" width="320" alt="16:9真实股价截图聚光灯划重点" /> | <img src="assets/showcase/frame-cbs-spotlight.png" width="320" alt="16:9内部信与72h闪电时间轴" /> |
+| 竖屏 3:4 满出血人物纪实照 + 暴跌取证卡 | 16:9 左文右证 + 实时跳动计数器 + 原彩荧光框 | macOS 3D 取证框 + 72h 时间轴 + 毛玻璃高亮字幕 |
 
 ### 普通 AI 热点视频 vs 本 Skill 交付标准
 

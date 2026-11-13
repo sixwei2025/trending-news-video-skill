@@ -46,13 +46,15 @@ export const SpotlightDoc: React.FC<SpotlightDocProps> = ({
     extrapolateRight: 'clamp',
   });
 
-  // Connected Pan & Zoom across highlights (OpenScreen / Vox camera paradigm)
+  // Connected Pan & Zoom across highlights (auto-capped for edge/wide highlights so text never clips)
   const firstDelay = highlights[0]?.delayFrames ?? 12;
-  const zoomScale = zoomTo?.scale ?? 1.24;
+  const maxW = highlights.reduce((m, h) => Math.max(m, h.w), 0);
+  const touchesEdge = highlights.some((h) => h.x < 6 || h.x + h.w > 94);
+  const safeMaxScale = touchesEdge || maxW > 70 ? 1.0 : maxW > 50 ? 1.04 : zoomTo?.scale ?? 1.1;
   const camZoom = interpolate(
     frame,
     [0, Math.max(4, firstDelay - 6), firstDelay + 18, 220],
-    [1, 1.02, zoomScale, zoomScale + 0.04],
+    [1, 1.0, safeMaxScale, safeMaxScale],
     { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }
   );
 
@@ -64,29 +66,29 @@ export const SpotlightDoc: React.FC<SpotlightDocProps> = ({
     targetY = highlights[0].y + highlights[0].h / 2;
   } else if (highlights.length >= 2) {
     const d0 = highlights[0].delayFrames ?? 12;
-    const d1 = highlights[1].delayFrames ?? 30;
+    const d1 = Math.max(d0 + 6, highlights[1].delayFrames ?? 30);
     const c0x = highlights[0].x + highlights[0].w / 2;
     const c0y = highlights[0].y + highlights[0].h / 2;
     const c1x = highlights[1].x + highlights[1].w / 2;
     const c1y = highlights[1].y + highlights[1].h / 2;
     if (highlights.length === 2) {
-      targetX = interpolate(frame, [d0, d1 - 4, d1 + 14], [c0x, c0x, c1x], {
+      targetX = interpolate(frame, [d0, d1], [c0x, c1x], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
       });
-      targetY = interpolate(frame, [d0, d1 - 4, d1 + 14], [c0y, c0y, c1y], {
+      targetY = interpolate(frame, [d0, d1], [c0y, c1y], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
       });
     } else {
-      const d2 = highlights[2].delayFrames ?? 48;
+      const d2 = Math.max(d1 + 6, highlights[2].delayFrames ?? 48);
       const c2x = highlights[2].x + highlights[2].w / 2;
       const c2y = highlights[2].y + highlights[2].h / 2;
-      targetX = interpolate(frame, [d0, d1 - 4, d1 + 12, d2 - 4, d2 + 12], [c0x, c0x, c1x, c1x, c2x], {
+      targetX = interpolate(frame, [d0, d1, d2], [c0x, c1x, c2x], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
       });
-      targetY = interpolate(frame, [d0, d1 - 4, d1 + 12, d2 - 4, d2 + 12], [c0y, c0y, c1y, c1y, c2y], {
+      targetY = interpolate(frame, [d0, d1, d2], [c0y, c1y, c2y], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
       });

@@ -2,16 +2,15 @@
 """
 Step 4: Four-Stage Automated Quality Inspection for Trending News Video
 Verifies:
-1. Video resolution (1080x1920), frame rate (30fps), and non-zero duration
-2. Cover image dimensions (1080x1920) and file size
-3. Audio track presence and loudness levels (mean_volume between -24 dB and -12 dB)
-4. Keyframe extraction at 0.01s (cover frame) and mid-video spotlight frame
+1. Video resolution (1920x1080 16:9 landscape), frame rate (30fps), and non-zero duration
+2. Cover image dimensions (1080x1440 or 2160x2880 3:4 portrait) and file size
+3. Audio track presence and loudness levels (mean_volume between -26 dB and -10 dB)
+4. Keyframe extraction at 0.05s (opening hook frame) and 12.0s (spotlight evidence frame)
 """
 import argparse
 import json
 import re
 import subprocess
-import sys
 from pathlib import Path
 
 
@@ -38,12 +37,36 @@ def check_video_streams(video_path: Path):
     if not a_stream:
         raise SystemExit("❌ QA Failed: Missing audio stream")
     w, h = v_stream.get("width"), v_stream.get("height")
-    if (w, h) != (1080, 1920):
-        raise SystemExit(f"❌ QA Failed: Expected 1080x1920 portrait video, got {w}x{h}")
+    if (w, h) != (1920, 1080):
+        raise SystemExit(f"❌ QA Failed: Expected 1920x1080 (16:9 landscape) video, got {w}x{h}")
     dur = float(info["format"]["duration"])
     if dur < 15.0:
         raise SystemExit(f"❌ QA Failed: Video duration too short ({dur:.2f}s)")
     return dur
+
+
+def check_cover_aspect(cover_path: Path):
+    out = subprocess.check_output(
+        [
+            "ffprobe",
+            "-v",
+            "error",
+            "-select_streams",
+            "v:0",
+            "-show_entries",
+            "stream=width,height",
+            "-of",
+            "json",
+            str(cover_path),
+        ],
+        text=True,
+    )
+    info = json.loads(out)
+    s = (info.get("streams") or [{}])[0]
+    cw, ch = int(s.get("width") or 0), int(s.get("height") or 0)
+    if cw <= 0 or ch <= 0 or abs((cw / ch) - (3.0 / 4.0)) > 0.02:
+        raise SystemExit(f"❌ QA Failed: Expected 3:4 portrait cover (e.g. 1080x1440), got {cw}x{ch}")
+    return cw, ch
 
 
 def check_loudness(video_path: Path):
@@ -65,8 +88,8 @@ def check_loudness(video_path: Path):
 
 def main():
     parser = argparse.ArgumentParser(description="Audit Trending News Video deliverables")
-    parser.add_argument("--video", type=Path, required=True, help="Path to rendered MP4")
-    parser.add_argument("--cover", type=Path, required=True, help="Path to cover PNG/JPG")
+    parser.add_argument("--video", type=Path, required=True, help="Path to rendered 16:9 MP4")
+    parser.add_argument("--cover", type=Path, required=True, help="Path to 3:4 cover PNG/JPG")
     args = parser.parse_args()
 
     if not args.video.exists():
@@ -75,6 +98,7 @@ def main():
         raise SystemExit(f"❌ Cover missing or too small: {args.cover}")
 
     dur = check_video_streams(args.video)
+    cw, ch = check_cover_aspect(args.cover)
     mean_db, max_db = check_loudness(args.video)
 
     qa_dir = args.video.parent / "qa"
@@ -91,8 +115,8 @@ def main():
     )
 
     print(
-        f"✅ [QA PASSED] Video: 1080x1920 | Duration: {dur:.2f}s | "
-        f"Loudness: mean={mean_db}dB, max={max_db}dB | Cover: {args.cover.name}"
+        f"✅ [QA PASSED] Video: 1920x1080 (16:9) | Cover: {cw}x{ch} (3:4) | Duration: {dur:.2f}s | "
+        f"Loudness: mean={mean_db}dB, max={max_db}dB"
     )
 
 
