@@ -1,5 +1,6 @@
 ---
 name: trending-news-video
+version: 1.1.0
 description: >
   汇芯·热点新闻深扒视频总控（Vox / WSJ / 彭博调查新闻级竖屏短视频生产管线）。
   融合 GitHub 顶流开源调查视频架构（htlin222/vox-styled-reels 荧光笔划重点与网格拼贴、
