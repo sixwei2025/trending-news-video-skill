@@ -1,0 +1,116 @@
+{
+  "title": "黄仁勋辞职背后中美AI算力切割",
+  "tts_voice": "zh-CN-YunjianNeural",
+  "tts_rate": "+12%",
+  "tts_pitch": "-2Hz",
+  "evidence_sources": [
+    {
+      "filename": "01_jensen_portrait.jpg",
+      "type": "direct_image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Jensen_Huang_20231109_%28cropped2%29.jpg/800px-Jensen_Huang_20231109_%28cropped2%29.jpg"
+    },
+    {
+      "filename": "05_nvda_stock_chart.png",
+      "type": "web_screenshot",
+      "url": "https://stockanalysis.com/stocks/nvda/",
+      "wait_ms": 2000
+    },
+    {
+      "filename": "06_cbs_news.png",
+      "type": "web_screenshot",
+      "url": "https://www.cbsnews.com/tag/nvidia/",
+      "wait_ms": 2000
+    },
+    {
+      "filename": "07_house_committee.png",
+      "type": "web_screenshot",
+      "url": "https://selectcommitteeontheccp.house.gov/",
+      "wait_ms": 2000
+    }
+  ],
+  "scenes": [
+    {
+      "id": "sc00_hook",
+      "badge": "突发 · 全球AI算力地震",
+      "headline": "4万亿教父突然出局",
+      "subheadline": "72小时私德风暴，如何掀翻硅谷最不能倒的人？",
+      "narration": "四万亿美元芯片帝国掌门人，说倒就倒！十一月十二日，执掌英伟达三十三年的黄仁勋，在连环私生活爆料和国家安全审查的双重夹击下，突然宣布辞去CEO职务！",
+      "asset": "01_jensen_portrait.jpg"
+    },
+    {
+      "id": "sc01_stock",
+      "badge": "11月12日 · 真实行情取证",
+      "headline": "盘中跳水超 13%",
+      "subheadline": "背后是围绕中美AI算力的精准切割",
+      "narration": "消息一出，英伟达股价盘中暴跌超过百分之十三，半天蒸发数千亿美元。但如果你以为这只是一场豪门桃色八卦，那就彻底看走眼了。这是一场围绕中美AI算力咽喉的精准政治切割！",
+      "asset": "05_nvda_stock_chart.png",
+      "highlights": [
+        { "x": 3, "y": 33, "w": 32, "h": 11, "style": "yellow_hl", "delayFrames": 12 },
+        { "x": 51, "y": 33, "w": 46, "h": 62, "style": "red_box", "delayFrames": 24 }
+      ]
+    },
+    {
+      "id": "sc02_media",
+      "badge": "海外媒体连环爆料",
+      "headline": "爆料时间卡点太巧",
+      "subheadline": "剑指国会听证与联邦国家安全审查",
+      "narration": "先看时间线有多诡异。短短一周内，外媒接连甩出私生活指控，紧接着华盛顿就传出联邦国家安全审查与国会紧急听证的风声。每一步都卡在最致命的节点上。",
+      "asset": "06_cbs_news.png",
+      "highlights": [
+        { "x": 4, "y": 24, "w": 92, "h": 42, "style": "red_box", "delayFrames": 14 }
+      ]
+    },
+    {
+      "id": "sc03_cn_media",
+      "badge": "国内权威财经追踪",
+      "headline": "33年创始元老交权",
+      "subheadline": "私德瑕疵何时成了端掉科技巨头的导火索？",
+      "narration": "国内主流财经媒体也迅速跟进。全世界都在问同一个问题：硅谷高管私德风波并不少见，为什么偏偏在这个节骨眼上，能把一位不可替代的科技教父直接掀下牌桌？",
+      "asset": "08_cn_news_163.png",
+      "highlights": [
+        { "x": 14, "y": 14, "w": 72, "h": 54, "style": "yellow_hl", "delayFrames": 14 }
+      ]
+    },
+    {
+      "id": "sc04_dilemma",
+      "badge": "华尔街与华盛顿的死结",
+      "headline": "两头不敢放的死局",
+      "subheadline": "一边是华盛顿出口红线，一边是全球最大芯片买方市场",
+      "narration": "答案藏在英伟达的财报里。过去两年，黄仁勋一直走钢丝：一边是华盛顿不断收紧的芯片出口禁令，另一边是贡献巨大营收的中国市场。他多次公开警告，彻底封锁只会逼出更强大的对手。",
+      "asset": "09_cn_news_ifeng.png",
+      "highlights": [
+        { "x": 12, "y": 18, "w": 76, "h": 52, "style": "red_box", "delayFrames": 14 }
+      ]
+    },
+    {
+      "id": "sc05_congress",
+      "badge": "美国国会特别委员会",
+      "headline": "鹰派逼宫算力军火商",
+      "subheadline": "谁在试图为对华定制芯片留后门，谁就会成为靶子",
+      "narration": "这句大实话，彻底惹毛了华盛顿鹰派。在美国国会战略竞争委员会眼里，AI算力就是新时代的核武器。一个总想在商业上左右逢源、不断推出特供版芯片的华人创始人，成了他们眼里最大的不确定因素。",
+      "asset": "07_house_committee.png",
+      "highlights": [
+        { "x": 8, "y": 28, "w": 84, "h": 46, "style": "red_box", "delayFrames": 14 }
+      ]
+    },
+    {
+      "id": "sc06_board",
+      "badge": "英伟达董事会火线换帅",
+      "headline": "换上绝对服从的看守者",
+      "subheadline": "技术狂人退场，合规官僚接管算力帝国",
+      "narration": "所以你看懂了吗？私德丑闻只是摆在台面上的手术刀，真正的目的是换帅。把带有強烈个人意志的创始人请出局，换上对华盛顿监管绝对服从的职业经理人，算力帝国从此彻底站队。",
+      "asset": "04_nvidia_official_press.png",
+      "highlights": [
+        { "x": 6, "y": 20, "w": 88, "h": 52, "style": "yellow_hl", "delayFrames": 14 }
+      ]
+    },
+    {
+      "id": "sc07_outro",
+      "badge": "时代分水岭 · 终局启示",
+      "headline": "硅谷全球化彻底谢幕",
+      "subheadline": "放弃幻想，加速国产全栈算力突围",
+      "narration": "黄仁勋的谢幕，标志着硅谷技术全球化时代的彻底终结。当商业逻辑完全让位于大国安全博弈，任何中间地带都将被清空。看懂这盘大棋，你就看懂了未来十年全球科技战的真正走向！",
+      "asset": "02_jensen_sc18.jpg"
+    }
+  ]
+}
