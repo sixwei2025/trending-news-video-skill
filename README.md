@@ -1,26 +1,26 @@
 <div align="center">
 
-<img src="assets/showcase/hero-banner.jpg" alt="汇芯·热点新闻深扒视频总控 — 多源真实网页取证 + 聚光灯灰化划重点 + 央媒播音腔 + Remotion 杂志级竖屏成片" width="100%" />
+<img src="assets/showcase/hero-banner.jpg" alt="汇芯·热点新闻深扒视频总控 v2.0 — 10w+ 爆款切角 + 2s 高频快切 + 全画幅聚光灯原彩取证 + 3:4 汇芯红封面内嵌 16:9 正片" width="100%" />
 
 # 汇芯·热点新闻深扒视频总控
-### `trending-news-video-skill` · 竖屏 3:4 杂志封面 (`1080×1440`) + 横屏 16:9 调查正片 (`1920×1080`) + 袁六伟原声 + 侧链混音
+### `trending-news-video-skill` · 竖屏 3:4 汇芯红封面 (`1080×1440`) + 横屏 16:9 调查正片 (`1920×1080` 首帧内嵌) + 袁六伟原声 + 26 镜快切
 
 [![Agent Skills](https://img.shields.io/badge/Agent%20Skills-Specification-C8102E?style=flat-square)](https://agentskills.io)
-[![Engine](https://img.shields.io/badge/Engine-Remotion%204.0%20+%20Playwright%20+%20FFmpeg%20+%20Voicebox-18181B?style=flat-square)](#五环境依赖与-3-分钟安装)
-[![Quality](https://img.shields.io/badge/Quality-Vox%20调查美学%20+%20四重自动质检-B45309?style=flat-square)](#三五步全自动流水线与质量把关)
+[![Engine](https://img.shields.io/badge/Engine-Remotion%204.0%20+%20Playwright%20+%20FFmpeg%20+%20Voicebox-18181B?style=flat-square)](#五环境依赖与仓库结构)
+[![Quality](https://img.shields.io/badge/Quality-Vox%20全画幅聚光灯%20+%20六项自动质检-B45309?style=flat-square)](#三五步全自动流水线与质量把关)
 [![License](https://img.shields.io/badge/License-MIT-059669?style=flat-square)](LICENSE)
 
-> 🔴 **作者：袁六伟 · 台州汇芯**｜一人 AI 公司创业者，学员 7000+，客户 100+，得到 / 华为分享老师  
+> 🔴 **作者：袁六伟 · 台州汇芯**｜台州汇芯创始人，得到 / 华为的分享老师，多家企业的 AI 落地顾问，一人 AI 公司实战派（学员 7000+，客户 100+，覆盖近 20 个行业）  
 > 📮 更多 AI 视频与自动化实战，关注 **公众号 / 视频号：袁六伟**
 
-**告别干瘪口播与满屏看不清的网页截图，把每一条科技/商业热点做成 95 分《经济学人》/ Vox 级深度调查短视频。**  
-给它一个热点事件或分镜配置，全自动跑完：**Playwright 多源无弹窗网页/行情取证 → 三层剥洋葱商业博弈脚本 → 默认袁六伟本人 Voicebox 原声与 16 处节拍音效帧级对齐 → Remotion 16:9 横屏聚光灯背景灰化 + 红黄荧光笔划重点 + 3:4 竖屏杂志封面渲染 → 侧链闪避 BGM 与 `-15 LUFS` 响度标准化 → 自动推送本地视频中心**。
+**告别干瘪口播、催眠 PPT 幻灯片与满屏看不清的小字网页截图，把每一条科技/商业热点做成破 10w+ 的 Vox /《经济学人》级深度调查短视频。**  
+给它一个热点事件或 `story_config.json`，全自动跑完：**10w+ 泛人群痛点切角 → Playwright 无弹窗 SEC/新闻取证与实拍视频转码 → 默认袁六伟本人 Voicebox 原声与 18 处节拍音效帧级对齐 → Remotion 16:9 全画幅聚光灯原彩划重点 + 3:4 汇芯红封面渲染（自动内嵌第 0.01s 首帧安全区）→ 侧链闪避 BGM 与 `-15 LUFS` 响度标准化 → 六项自动质检并入库本地视频中心**。
 
 ```bash
 # 一键安装 Skill
 npx skills add sixwei2025/trending-news-video-skill
 
-# 一键运行完整热点深扒视频产线（配音+音效+Remotion 16:9正片与3:4封面渲染+BGM侧链混音+自动质检）
+# 一键运行完整热点深扒视频产线（配音+音效+Remotion 16:9快切正片与3:4封面渲染+BGM侧链混音+六项质检）
 python3 skills/trending-news-video/scripts/build_news_video.py \
   --project-dir ~/热点视频_黄仁勋 \
   --config skills/trending-news-video/templates/story_config.example.json \
@@ -33,10 +33,8 @@ python3 skills/trending-news-video/scripts/build_news_video.py \
 
 ## 版本记录
 
-当前版本：`v1.2.0` · 2026-11-13
+当前版本：`v2.0.0` · 2026-11-14  
 完整变化记录见 [CHANGELOG.md](CHANGELOG.md)。
-
-
 
 ## 新手安装：把链接发给 AI
 
@@ -55,21 +53,22 @@ https://github.com/sixwei2025/trending-news-video-skill
 
 ## 一、看真实成片效果与正反对比
 
-以下画面全部由本 Skill（`trending-news-video`）**真实渲染导出**，所有新闻报道与股价行情均为 Playwright 实时无弹窗取证截图：
+以下画面全部由本 Skill（`trending-news-video v2.0`）**真实渲染导出**，所有 SEC 官方申报表、新闻报道与实拍镜头均为无弹窗真实素材：
 
-| 竖屏 3:4 杂志级封面 (`1080×1440`) | 16:9 横屏正片：真实行情聚光灯划重点 | 16:9 横屏正片：内部致歉信与72h时间轴 |
+| 竖屏 3:4 汇芯品牌红封面 (`1080×1440`) | 16:9 正片：全画幅聚光灯原彩划重点 | 16:9 正片：结尾 7 天离岗灵魂反问卡 |
 | :---: | :---: | :---: |
-| <img src="assets/showcase/cover-jensen.png" width="220" alt="黄仁勋辞职深扒视频3:4杂志级封面" /> | <img src="assets/showcase/frame-stock-spotlight.png" width="320" alt="16:9真实股价截图聚光灯划重点" /> | <img src="assets/showcase/frame-cbs-spotlight.png" width="320" alt="16:9内部信与72h闪电时间轴" /> |
-| 竖屏 3:4 满出血人物纪实照 + 暴跌取证卡 | 16:9 左文右证 + 实时跳动计数器 + 原彩荧光框 | macOS 3D 取证框 + 72h 时间轴 + 毛玻璃高亮字幕 |
+| <img src="assets/showcase/cover-jensen.png" width="220" alt="黄仁勋深扒视频3:4汇芯品牌红人物大字报封面" /> | <img src="assets/showcase/frame-stock-spotlight.png" width="320" alt="16:9全画幅聚光灯原彩透出划重点" /> | <img src="assets/showcase/frame-cbs-spotlight.png" width="320" alt="16:9结尾创业者灵魂反问与单行字幕" /> |
+| 汇芯红 `#C8102E` + 灰化底图 + 袁六伟高清形象照防压脸 | 全画幅 `1920×1080` 灰化压暗 + 固定像素反推 100% 原彩透出 | 五次平滑推拉 + 严格单行短句字幕（`≤17` 字） |
 
-### 普通 AI 热点视频 vs 本 Skill 交付标准
+### 普通 AI 热点视频 vs 本 Skill v2.0 交付标准
 
-| 维度 | 普通 AI 热点视频（10分翻车现场） | 汇芯·热点新闻深扒视频总控（95分杂志级标准） |
+| 维度 | 普通 AI 热点视频（10分翻车现场） | 汇芯·热点新闻深扒视频总控 v2.0（95分 10w+ 爆款标准） |
 | :--- | :--- | :--- |
-| **封面与前 0.5s** | 白字黑底或 AI 假人像，左上角堆砌无意义英文小标签 | **0.01s 时代周刊级封面**：高清纪实人物照 + 3张真实外媒/暴跌K线微缩取证卡 + 冲击力大标题 |
-| **密集文字截图** | 整张网页直接干放屏幕中央，手机端字小如蚁找不到重点 | **`SpotlightDoc` 聚光灯取证窗**：非重点区域自动灰化暗化模糊，红/黄荧光笔动态划出 100% 清晰全彩重点句 |
-| **配音腔调** | 用平淡聊天腔念新闻，缺乏调查报道的紧迫感与权威感 | **默认央媒/财经播音腔**（`zh-CN-YunjianNeural` `+12%` 语速 `-2Hz` 压低音调，支持参数切换 Voicebox 原声） |
-| **声学设计** | 只有干瘪人声，或背景音乐喧宾夺主盖住台词 | **帧级节拍音效（Impact 重击 / Marker 荧光笔摩擦 / Whoosh 推镜）** + 侧链闪避 BGM + `-15 LUFS` 响度标准化 |
+| **选题与切角** | 照念新闻通稿或空谈宏大叙事，普通观众划走不看 | **10w+ 泛人群痛点切角三问**：切入「算大账/分家产/铁饭碗反差」+ 一手官方底层档案（如 SEC Form 4）+ 结尾 7 天离岗灵魂反问 |
+| **封面与第 0.01s 首帧** | 封面比例混乱、红字糊在花哨背景上、文字压住人脸 | **竖屏 `3:4` 汇芯红细体大字报封面（`1080×1440`）**，且自动内嵌至 `16:9` 视频第 `0.01s` 首帧中央 `810×1080` 安全区 |
+| **镜头节奏与字幕** | 8 张静态图一镜干放 8~10 秒，像催眠 PPT；多行字幕堆叠 | **100% JSON 数据驱动 26 镜快切（平均 ~2.1s/镜，总长 `<60s`）**，全片严格单行字幕（`≤18` 字） |
+| **密集公文与网页取证** | 整张网页塞进半边小框字小如蚁，或带着门户 APP 弹窗二维码 | **`SpotlightDoc` 全画幅 `1920×1080` 聚光灯**：非重点区域灰化压暗，红/黄高亮框内 100% 像素级原彩透出 + 五次平滑推拉运镜 |
+| **声学设计** | 机械合成音有死气口，或背景音乐盖住台词 | **默认袁六伟本人 Voicebox 原声（智能切除句间死气口 + 自动校准 `<59s` 黄金时长）** + 18 处节拍音效 + 侧链闪避 BGM（人声期 `<-34dB`） |
 
 ---
 
@@ -77,9 +76,9 @@ https://github.com/sixwei2025/trending-news-video-skill
 
 | 你对 Agent 说的话 | 自动执行的流水线动作 |
 | :--- | :--- |
-| **“帮我做一期关于【XX热点事件】的深扒视频，用新闻腔”** | 自动检索多源权威报道与股价行情 → 用 `harvest_evidence.py` 无弹窗截图 → 生成 8 幕三层博弈分镜 → 合成播音腔与节拍音效 → Remotion 渲染 1080×1920 成片并入库本地视频中心 |
-| **“把这些新闻网页链接做成聚光灯划重点视频”** | 自动打开链接去广告截图 → 按核心段落坐标配置 `SpotlightDoc` 红黄荧光框 → 渲染输出带顶部章节进度条的调查短片 |
-| **“用我自己的声音出一条热点商业点评视频”** | 自动传参 `--voice yuanliuwei` 调用本地 Voicebox（`127.0.0.1:17493`）克隆音色合成配音，其余视觉与混音保持杂志级标准 |
+| **“帮我做一期关于【XX热点事件】的 10w+ 深扒视频”** | 先按「破 10w+ 切角三问」找到大众算账/分家产反差切口 → 调用 `harvest_evidence.py` 抓取实拍视频、SEC/官方档案与无弹窗新闻 → 合成袁六伟原声与 26 镜快切时间轴 → Remotion 渲染 `1920×1080` 正片与 `1080×1440` 封面 → 六项质检通过后入库 `video-hub` |
+| **“把这些 SEC 档案和新闻网页做成聚光灯划重点视频”** | 自动调用本机 Chrome 剥离弹窗与二维码截图 → 按核心段落百分比坐标配置 `spotlight_doc` 原彩透出框 → 渲染输出带顶部汇芯红进度条与单行字幕的调查短片 |
+| **“用财经播音腔出一条热点商业深评”** | 自动传参 `--voice news_anchor` 切换 `zh-CN-YunjianNeural` 播音腔，其余 26 镜快切视觉与侧链混音保持一致 |
 
 ---
 
@@ -91,23 +90,23 @@ https://github.com/sixwei2025/trending-news-video-skill
 
 | 步骤 | 核心脚本 / 组件 | 输入 | 自动化动作与质量把关指标 | 输出产物 |
 | :--- | :--- | :--- | :--- | :--- |
-| **Step 01**<br>多源真实取证 | [`harvest_evidence.py`](skills/trending-news-video/scripts/harvest_evidence.py) | `story_config.json` | Playwright `2x` 高分屏截取外媒、国内财经与股价行情，自动注入 CSS 清除 Cookie 弹窗与横幅广告 | `assets/*.png`<br>`assets/*.jpg` |
-| **Step 02**<br>播音腔与音效 | [`generate_tts_and_sfx.py`](skills/trending-news-video/scripts/generate_tts_and_sfx.py) | 分镜台词文本 | 合成 `zh-CN-YunjianNeural` 新闻腔干声，按 `30fps` 精确反推每幕帧数；程序化合成 `impact` / `marker` / `whoosh` 三类音效 | `voice_full.wav`<br>`timings.json`<br>`sfx/*.wav` |
-| **Step 03**<br>杂志级渲染 | [`SpotlightDoc.tsx`](skills/trending-news-video/templates/remotion_news_kit/src/components/SpotlightDoc.tsx) | 证据图 + 高亮坐标 | 渲染 0.01s 封面 `CoverStill`、顶部 8 段进度条、背景灰化 `92%` + 荧光笔像素级对齐原彩透出、底部毛玻璃高亮字幕 | `cover.png`<br>`remotion_raw.mp4` |
-| **Step 04**<br>侧链闪避混音 | [`build_news_video.py`](skills/trending-news-video/scripts/build_news_video.py) | 裸片 + 干声 + BGM | 在每幕转场与 `+14f/+28f` 荧光笔划出瞬间挂载音效，启用 `sidechaincompress` 压低 BGM 并完成响度标准化 | `output_final.mp4` |
-| **Step 05**<br>四重质检与入库 | [`audit_news_video.py`](skills/trending-news-video/scripts/audit_news_video.py)<br>[`push_video_hub.py`](skills/trending-news-video/scripts/push_video_hub.py) | 最终成片与封面 | 自动核对 `1080×1920` 画幅、音轨响度（`-26dB ~ -10dB`）并抽检 0.05s/12s 关键帧；校验通过后提交 `video-hub` 待确认 | `qa/*.png`<br>视频中心工单 |
+| **Step 01**<br>多源真实取证 | [`harvest_evidence.py`](skills/trending-news-video/scripts/harvest_evidence.py) | `story_config.json` | 实拍视频/GIF 自动转码 `1080p 30fps MP4`；本机 Chrome 截取外媒、SEC 档案与国内财经，自动剥离 Cookie 弹窗与高层悬浮二维码 | `assets/*.mp4`<br>`assets/*.png`<br>`assets/*.jpg` |
+| **Step 02**<br>原声与快切时间轴 | [`generate_tts_and_sfx.py`](skills/trending-news-video/scripts/generate_tts_and_sfx.py) | 8 段深扒台词与 26 镜权重 | 默认合成袁六伟 Voicebox 原声，自动切除句间静音并校准至 `<59s` 黄金完播带；计算 26 个子镜头时间戳并生成 `impact` / `marker` / `whoosh` 音效 | `voice_full.wav`<br>`remotion_props.json`<br>`sfx/*.wav` |
+| **Step 03**<br>全数据驱动渲染 | [`NewsBurstVideo.tsx`](skills/trending-news-video/templates/remotion_news_kit/src/NewsBurstVideo.tsx)<br>[`SpotlightDoc.tsx`](skills/trending-news-video/templates/remotion_news_kit/src/components/SpotlightDoc.tsx) | `remotion_props.json` | 渲染 `3:4` 汇芯红封面 `CoverStill`（`1080×1440`）与 `16:9` 正片 `NewsBurstVideo`（`1920×1080`，首帧 `0.00~0.12s` 内嵌安全区封面 + 全画幅聚光灯原彩透出） | `cover_3x4.jpg`<br>`remotion_raw.mp4` |
+| **Step 04**<br>帧级音效与侧链混音 | [`build_news_video.py`](skills/trending-news-video/scripts/build_news_video.py) | 裸片 + 原声 + BGM | 在每处高亮框弹出帧挂载 `marker.wav`、反转卡挂载 `impact.wav`、急推镜挂载 `whoosh.wav`；启用 `sidechaincompress` 将人声期 BGM 压至 `-34dB` 以下并标准化至 `-15 LUFS` | `output_final.mp4`<br>`bgm_ducked_only.wav` |
+| **Step 05**<br>六项质检与入库 | [`audit_news_video.py`](skills/trending-news-video/scripts/audit_news_video.py)<br>[`push_video_hub.py`](skills/trending-news-video/scripts/push_video_hub.py) | 最终成片与封面 | 自动核对 `1920×1080` 画幅、`3:4` 封面、`<60.5s` 时长、单行字幕、主音轨响度与侧链压低分贝，导出 4 张 `qa/` 关键帧；核验通过后提交 `video-hub` 待确认 | `qa/*.jpg`<br>视频中心工单 |
 
 ---
 
 ## 四、高频翻车点根治方案与核心公式
 
-1. **解决荧光笔局部放大文字错位重影（外框固定像素反推公式）**：
-   - 在 Remotion 中做局部聚光灯全彩透出时，若内层 `<Img>` 用百分比宽度 `10000 / hl.w %`，会随高亮框尺寸变化产生严重错位。
-   - 本 Skill 在 [`SpotlightDoc.tsx`](skills/trending-news-video/templates/remotion_news_kit/src/components/SpotlightDoc.tsx) 中锁定外框像素尺寸 `cardWidth × cardH`，内层全彩原图容器使用绝对像素反向偏移 `left: -(hl.x / 100) * cardWidth`、`top: -(hl.y / 100) * cardH`，实现动态划重点过程中 100% 像素级严丝合缝。
-2. **解决网页截图满屏 Cookie 遮罩**：
-   - [`harvest_evidence.py`](skills/trending-news-video/scripts/harvest_evidence.py) 内置去弹窗 CSS 规则（自动隐藏 `#onetrust-consent-sdk`、`[class*="cookie"]`、`[class*="modal"]` 等遮挡层），确保截出来的每一帧外媒报道干净利落。
-3. **解决配乐盖过新闻播报人声**：
-   - 采用 `sidechaincompress=threshold=0.015:ratio=6:attack=15:release=280` 强侧链压缩，只要播音员开口，背景音乐自动压低至 `-34 dB` 以下；气口停顿处音乐自然回升托底。
+1. **解决全画幅聚光灯局部放大文字错位重影（画布固定像素反推公式）**：
+   - 在 Remotion 中做局部聚光灯全彩透出时，若内层 `<Img>` 用百分比宽度，会随高亮框展开产生严重错位。
+   - 本 Skill 在 [`SpotlightDoc.tsx`](skills/trending-news-video/templates/remotion_news_kit/src/components/SpotlightDoc.tsx) 中锁定外框画布尺寸 `1920 × 1080`，内层全彩原图容器使用绝对像素反向偏移 `left: -(hl.x / 100) * 1920`、`top: -(hl.y / 100) * 1080`，实现动态刷出重点过程中 **100% 像素级严丝合缝**。
+2. **解决国内财经门户 APP 弹窗与悬浮二维码污染画面**：
+   - [`harvest_evidence.py`](skills/trending-news-video/scripts/harvest_evidence.py) 除了注入去弹窗 CSS，还会在截图前执行 DOM 扫描，自动移除 `position: fixed/sticky` 且 `z-index >= 50` 的二维码浮窗与登录遮罩，并要求入片前逐张肉眼检查像素。
+3. **解决配音拖沓超 60 秒与 BGM 盖过人声**：
+   - [`generate_tts_and_sfx.py`](skills/trending-news-video/scripts/generate_tts_and_sfx.py) 内置句间静音切除与 `target_max_sec` 自动语速校准，确保 8 段高密度商业拆解稳定控制在 `55~58s`；配合 `sidechaincompress` 强侧链闪避，人声期间 BGM 自动压低至 `-34 dB` 以下，气口处自然回升托底。
 
 ---
 
@@ -116,41 +115,47 @@ https://github.com/sixwei2025/trending-news-video-skill
 ```text
 trending-news-video-skill/
 ├── README.md                                            # 仓库总览与真实成片展示
+├── CHANGELOG.md                                         # 版本演进记录（当前 v2.0.0）
 ├── LICENSE                                              # MIT 开源协议
+├── SKILL.md                                             # 根目录技能协议入口（兼容 npx skills add）
 ├── assets/showcase/                                     # 首屏横幅、五步架构图与真实成片抽帧
 └── skills/trending-news-video/
-    ├── SKILL.md                                         # 【总控入口】五步闭环工作流与视觉声学规范
+    ├── SKILL.md                                         # 【总控入口】10w+切角三问与五步闭环工作流
     ├── QUICKSTART.md                                    # 3 分钟上手指南
     ├── examples/                                        # 真实渲染出的封面与聚光灯抽帧样本
     ├── references/
-    │   ├── vox-editorial-playbook.md                    # Vox/WSJ 三层剥洋葱叙事与像素对齐规范
-    │   └── open-source-credits.md                       # GitHub 五大开源项目融合致谢
+    │   ├── aesthetic-spec.md                            # 汇芯视频审美、五次平滑运镜与字号阶梯规范
+    │   ├── vox-editorial-playbook.md                    # 10w+ 三段式快切叙事与全画幅聚光灯对齐公式
+    │   └── open-source-credits.md                       # GitHub 开源项目融合致谢
     ├── templates/
-    │   ├── story_config.example.json                    # 8 幕商业热点深扒标准分镜配置模板
-    │   └── remotion_news_kit/                           # Remotion 4.0 调查新闻视觉组件库
+    │   ├── story_config.example.json                    # 8 段 26 镜数据驱动深扒标准配置模板
+    │   └── remotion_news_kit/                           # Remotion 4.0 数据驱动调查新闻视觉引擎
+    │       ├── public/portrait.png                      # 袁六伟个人高清抠像形象照（供 3:4 封面与首帧使用）
+    │       └── src/{Cover.tsx,Scenes.tsx,NewsBurstVideo.tsx,Root.tsx,components/SpotlightDoc.tsx}
     └── scripts/
-        ├── harvest_evidence.py                          # Playwright 多源网页无弹窗取证脚本
-        ├── generate_tts_and_sfx.py                      # 新闻腔 TTS + 30fps 时间轴 + 节拍音效合成器
+        ├── harvest_evidence.py                          # 视频/GIF 1080p 转码 + 本机 Chrome 无弹窗取证脚本
+        ├── generate_tts_and_sfx.py                      # Voicebox/播音腔合成 + 26 镜快切时间轴 + 节拍音效
         ├── build_news_video.py                          # 一键串联渲染与侧链混音总控脚本
-        ├── audit_news_video.py                          # 四重自动质检脚本（画幅/时长/响度/关键帧）
+        ├── audit_news_video.py                          # 六项自动质检脚本（画幅/封面/时长/单行字幕/响度/关键帧）
         └── push_video_hub.py                            # 自动入库本地视频中心（127.0.0.1:8765）
 ```
 
 ### 开源致谢（Credits）
 本仓库在研发过程中借鉴并致谢以下开源项目：
 - `htlin222/vox-styled-reels` & `Anil-matcha/vox-ai-motion-graphics-generator`（Vox 报刊拼贴与荧光笔划重点范式）
-- `social-media-skills/remotion-shorts-skill`（竖屏黄金前 3 秒钩子与阅读节奏控制）
-- `reactvideoeditor/remotion-templates` & `manalkaff/remotion-prompts`（3D 微倾角网页取证窗与新闻进度条组件）
+- `social-media-skills/remotion-shorts-skill`（黄金前 0.5 秒钩子与高频快切阅读节奏控制）
+- `reactvideoeditor/remotion-templates` & `manalkaff/remotion-prompts`（网页取证聚光灯与新闻进度条组件）
 - `calesthio/OpenMontage`（纪实影像档案检索与多阶段导演工作流）
 
 ---
 
 ## 关于作者与开源生态
 
-**袁六伟 · 台州汇芯**：一人 AI 公司创业者，学员 7000+，服务商单客户 100+，覆盖近 20 个行业，得到 / 华为分享老师。AI 变现实战派，自己跑通才拿出来教。
+**袁六伟 · 台州汇芯**：台州汇芯创始人，得到 / 华为的分享老师，多家企业的 AI 落地顾问，一人 AI 公司实战派；累计带出实战学员 7000+，服务商单客户 100+，覆盖近 20 个行业。专注一人 AI 公司实战与企业自动化落地，只把每天真实跑通、能持续创收的 Agent Skills 与全自动内容/短视频工程流水线开源交付。
 
 - 公众号：**袁六伟**（微信搜一搜关注，看更多 AI 工具实测与一人公司实战）
 - 视频号：**袁六伟**
+- GitHub 开源主页：`https://github.com/sixwei2025`
 
 这个项目免费开源。如果它帮你的产线省下了每天反复返工的时间，欢迎在右上角点个 ⭐ **Star**，也欢迎转发给身边做内容或一人公司的朋友。
 
@@ -158,7 +163,7 @@ trending-news-video-skill/
 
 | 仓库 | 领域 | 核心能力 |
 | :--- | :--- | :--- |
-| [**trending-news-video-skill**](https://github.com/sixwei2025/trending-news-video-skill) | 短视频工程 | 真实外媒/行情取证 + 聚光灯灰化划重点 + 央媒播音腔 + Remotion 杂志级热点深扒视频 |
+| [**trending-news-video-skill**](https://github.com/sixwei2025/trending-news-video-skill) | 短视频工程 | 10w+ 爆款切角 + 26 镜高频快切 + 全画幅聚光灯原彩划重点 + 袁六伟原声热点深扒视频 |
 | [**auto-tutorial-skill**](https://github.com/sixwei2025/auto-tutorial-skill) | 短视频工程 | 链接/网页/真机截图 → 3:4 封面 + 1.5x 配音 + 红框标注教程视频 |
 | [**talking-head-video-skill**](https://github.com/sixwei2025/talking-head-video-skill) | 短视频工程 | 1080×1920 竖屏真人口播短视频（ASR 错字校对 + 逐字卡拉OK字幕 + 6项QC） |
 | [**3d-map-video-skill**](https://github.com/sixwei2025/3d-map-video-skill) | 短视频工程 | MapLibre 3D 地形 + WarFX 战争特效（粒子行军/点阵兵力/震屏混音） |

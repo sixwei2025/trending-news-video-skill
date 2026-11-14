@@ -1,116 +1,389 @@
 {
-  "title": "黄仁勋辞职背后中美AI算力切割",
-  "tts_voice": "zh-CN-YunjianNeural",
-  "tts_rate": "+12%",
-  "tts_pitch": "-2Hz",
+  "title": "黄仁勋亏惨出局万亿信托底牌太狠了",
+  "tempo": 1.50,
+  "target_max_sec": 59.0,
+  "lead_in_sec": 0.16,
+  "tail_pad_sec": 0.30,
+  "cover": {
+    "eyebrow": "SEC底牌曝光 · 马斯克声援",
+    "line1": "黄仁勋亏惨出局？",
+    "line2": "万亿信托底牌太狠了",
+    "subtitle": "工牌一夜能收走，1995年锁死的资产谁也抢不走",
+    "bgAsset": "11_nvidia_hq.jpg",
+    "portraitAsset": "portrait.png",
+    "authorLeft": "袁六伟 · 台州汇芯",
+    "badgeRight": "商业认知深评",
+    "sideWatermarkLeft": "FAMILY · TRUST",
+    "sideWatermarkRight": "HUIXIN · INSIGHT"
+  },
   "evidence_sources": [
     {
-      "filename": "01_jensen_portrait.jpg",
+      "filename": "vid_jensen_speak.mp4",
+      "type": "video_or_gif",
+      "wiki_title": "File:PM Modi is such an incredible student, NVIDIA CEO Jensen Huang.webm",
+      "start_sec": 4.0,
+      "duration_sec": 4.5
+    },
+    {
+      "filename": "11_nvidia_hq.jpg",
       "type": "direct_image",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Jensen_Huang_20231109_%28cropped2%29.jpg/800px-Jensen_Huang_20231109_%28cropped2%29.jpg"
+      "wiki_title": "File:Nvidia headquarters in Santa Clara, CA.jpg"
+    },
+    {
+      "filename": "20_jensen_stanford_2026.jpg",
+      "type": "direct_image",
+      "wiki_title": "File:Jensen huang stanford 2026-04-30 011.jpg"
     },
     {
       "filename": "05_nvda_stock_chart.png",
       "type": "web_screenshot",
       "url": "https://stockanalysis.com/stocks/nvda/",
       "wait_ms": 2000
-    },
-    {
-      "filename": "06_cbs_news.png",
-      "type": "web_screenshot",
-      "url": "https://www.cbsnews.com/tag/nvidia/",
-      "wait_ms": 2000
-    },
-    {
-      "filename": "07_house_committee.png",
-      "type": "web_screenshot",
-      "url": "https://selectcommitteeontheccp.house.gov/",
-      "wait_ms": 2000
     }
   ],
-  "scenes": [
+  "segments": [
     {
-      "id": "sc00_hook",
-      "badge": "突发 · 全球AI算力地震",
-      "headline": "4万亿教父突然出局",
-      "subheadline": "72小时私德风暴，如何掀翻硅谷最不能倒的人？",
-      "narration": "四万亿美元芯片帝国掌门人，说倒就倒！十一月十二日，执掌英伟达三十三年的黄仁勋，在连环私生活爆料和国家安全审查的双重夹击下，突然宣布辞去CEO职务！",
-      "asset": "01_jensen_portrait.jpg"
-    },
-    {
-      "id": "sc01_stock",
-      "badge": "11月12日 · 真实行情取证",
-      "headline": "盘中跳水超 13%",
-      "subheadline": "背后是围绕中美AI算力的精准切割",
-      "narration": "消息一出，英伟达股价盘中暴跌超过百分之十三，半天蒸发数千亿美元。但如果你以为这只是一场豪门桃色八卦，那就彻底看走眼了。这是一场围绕中美AI算力咽喉的精准政治切割！",
-      "asset": "05_nvda_stock_chart.png",
-      "highlights": [
-        { "x": 3, "y": 33, "w": 32, "h": 11, "style": "yellow_hl", "delayFrames": 12 },
-        { "x": 51, "y": 33, "w": 46, "h": 62, "style": "red_box", "delayFrames": 24 }
+      "id": "01",
+      "narration": "全网都在算黄仁勋这次要赔掉多少亿！丢了CEO、近八亿期权当场作废，真以为老黄惨败出局了？扒完SEC底牌，所有人都沉默了！",
+      "tts": "全网都在算黄仁勋这次要赔掉多少亿！丢了 C E O、近八亿期权当场作废，真以为老黄惨败出局了？扒完 S E C 底牌，所有人都沉默了！",
+      "pause": 0.15,
+      "shots": [
+        {
+          "ratio": 0.24,
+          "text": "全网都在算黄仁勋要赔多少亿！",
+          "sceneType": "real_video",
+          "asset": "vid_jensen_speak.mp4",
+          "badge": "实拍画面 · 黄仁勋公开亮相"
+        },
+        {
+          "ratio": 0.26,
+          "text": "丢了CEO，近8亿期权当场作废",
+          "sceneType": "spotlight_doc",
+          "asset": "40_32_en_forfeited_art.png",
+          "zoomFrom": 1.08,
+          "zoomTo": 1.36,
+          "panX": [6, 10],
+          "panY": [4, 8],
+          "highlights": [
+            { "x": 14, "y": 21, "w": 34, "h": 17, "style": "red_box", "delayFrames": 4 }
+          ],
+          "badge": "外媒实证 · $1.08亿未归属股票作废"
+        },
+        {
+          "ratio": 0.24,
+          "text": "真以为老黄这次惨败出局了？",
+          "sceneType": "real_media",
+          "asset": "32_en_forfeited.png",
+          "zoomFrom": 1.06,
+          "zoomTo": 1.24,
+          "panY": [4, -4]
+        },
+        {
+          "ratio": 0.26,
+          "text": "扒完SEC底牌，所有人都沉默了！",
+          "sceneType": "spotlight_doc",
+          "asset": "30_sec_form4_top.png",
+          "zoomFrom": 1.08,
+          "zoomTo": 1.32,
+          "panY": [4, -2],
+          "highlights": [
+            { "x": 3, "y": 31, "w": 33, "h": 14, "style": "yellow_hl", "delayFrames": 4 }
+          ],
+          "badge": "美国证监会 · SEC Form 4 官方档案"
+        }
       ]
     },
     {
-      "id": "sc02_media",
-      "badge": "海外媒体连环爆料",
-      "headline": "爆料时间卡点太巧",
-      "subheadline": "剑指国会听证与联邦国家安全审查",
-      "narration": "先看时间线有多诡异。短短一周内，外媒接连甩出私生活指控，紧接着华盛顿就传出联邦国家安全审查与国会紧急听证的风声。每一步都卡在最致命的节点上。",
-      "asset": "06_cbs_news.png",
-      "highlights": [
-        { "x": 4, "y": 24, "w": 92, "h": 42, "style": "red_box", "delayFrames": 14 }
+      "id": "02",
+      "narration": "表面看，掌舵三十三年的帅印一夜交出，外界疯传加州无协议天价分家产；但翻开美国证监会文件，作废的那点期权，连他零头都算不上！",
+      "tts": "表面看，掌舵三十三年的帅印一夜交出，外界疯传加州无协议天价分家产；但翻开美国证监会文件，作废的那点期权，连他零头都算不上！",
+      "pause": 0.15,
+      "shots": [
+        {
+          "ratio": 0.32,
+          "text": "掌舵33年的帅印一夜交出",
+          "sceneType": "real_media",
+          "asset": "04_nvidia_official_press.png",
+          "zoomFrom": 1.08,
+          "zoomTo": 1.26,
+          "panY": [4, -4],
+          "badge": "英伟达官网 · 董事会卸任公告"
+        },
+        {
+          "ratio": 0.34,
+          "text": "外界疯传加州无协议天价分家产",
+          "sceneType": "spotlight_doc",
+          "asset": "51_163_cali_split.png",
+          "zoomFrom": 1.08,
+          "zoomTo": 1.28,
+          "panY": [6, 2],
+          "highlights": [
+            { "x": 26, "y": 10, "w": 47, "h": 16, "style": "red_box", "delayFrames": 4 }
+          ],
+          "badge": "财经热议 · 加州夫妻共同财产制"
+        },
+        {
+          "ratio": 0.34,
+          "text": "但作废的期权仅占身家0.08%！",
+          "sceneType": "spotlight_doc",
+          "asset": "40_32_en_forfeited_art.png",
+          "zoomFrom": 1.20,
+          "zoomTo": 1.50,
+          "panX": [6, 10],
+          "panY": [-8, -14],
+          "highlights": [
+            { "x": 16, "y": 77, "w": 40, "h": 9, "style": "yellow_hl", "delayFrames": 4 }
+          ],
+          "badge": "彭博测算 · 仅占总财富万分之八"
+        }
       ]
     },
     {
-      "id": "sc03_cn_media",
-      "badge": "国内权威财经追踪",
-      "headline": "33年创始元老交权",
-      "subheadline": "私德瑕疵何时成了端掉科技巨头的导火索？",
-      "narration": "国内主流财经媒体也迅速跟进。全世界都在问同一个问题：硅谷高管私德风波并不少见，为什么偏偏在这个节骨眼上，能把一位不可替代的科技教父直接掀下牌桌？",
-      "asset": "08_cn_news_163.png",
-      "highlights": [
-        { "x": 14, "y": 14, "w": 72, "h": 54, "style": "yellow_hl", "delayFrames": 14 }
+      "id": "03",
+      "narration": "他手里依然死死攥着英伟达百分之三点五的股份，身家超过一千四百亿美金，折合人民币整整一万亿，稳坐第一大个人股东！",
+      "tts": "他手里依然死死攥着英伟达百分之三点五的股份，身家超过一千四百亿美金，折合人民币整整一万亿，稳坐第一大个人股东！",
+      "pause": 0.16,
+      "shots": [
+        {
+          "ratio": 0.34,
+          "text": "他仍死死攥着英伟达3.5%股份",
+          "sceneType": "spotlight_doc",
+          "asset": "30_sec_form4_top.png",
+          "zoomFrom": 1.18,
+          "zoomTo": 1.48,
+          "panX": [-12, -18],
+          "panY": [-12, -18],
+          "highlights": [
+            { "x": 71, "y": 78, "w": 26, "h": 20, "style": "red_box", "delayFrames": 4 }
+          ],
+          "badge": "SEC持仓明细 · 超8亿股核心仓位"
+        },
+        {
+          "ratio": 0.34,
+          "text": "身家超1400亿美金，整整一万亿！",
+          "sceneType": "real_media",
+          "asset": "05_nvda_stock_chart.png",
+          "zoomFrom": 1.10,
+          "zoomTo": 1.28,
+          "panX": [-4, -8]
+        },
+        {
+          "ratio": 0.32,
+          "text": "依然稳坐英伟达第一大个人股东",
+          "sceneType": "real_media",
+          "asset": "21_jensen_stanford_smile.jpg",
+          "zoomFrom": 1.04,
+          "zoomTo": 1.16
+        }
       ]
     },
     {
-      "id": "sc04_dilemma",
-      "badge": "华尔街与华盛顿的死结",
-      "headline": "两头不敢放的死局",
-      "subheadline": "一边是华盛顿出口红线，一边是全球最大芯片买方市场",
-      "narration": "答案藏在英伟达的财报里。过去两年，黄仁勋一直走钢丝：一边是华盛顿不断收紧的芯片出口禁令，另一边是贡献巨大营收的中国市场。他多次公开警告，彻底封锁只会逼出更强大的对手。",
-      "asset": "09_cn_news_ifeng.png",
-      "highlights": [
-        { "x": 12, "y": 18, "w": 76, "h": 52, "style": "red_box", "delayFrames": 14 }
+      "id": "04",
+      "narration": "更狠的是，早在1995年公司上市前，他和妻子洛丽就把八亿多股核心股权，装进了多层家族生前信托和基金会，跟CEO职位彻底隔离！",
+      "tts": "更狠的是，早在一九九五年公司上市前，他和妻子洛丽就把八亿多股核心股权，装进了多层家族生前信托和基金会，跟 C E O 职位彻底隔离！",
+      "pause": 0.16,
+      "shots": [
+        {
+          "ratio": 0.30,
+          "text": "更狠的是1995年埋下的伏笔！",
+          "sceneType": "spotlight_doc",
+          "asset": "33_en_networth.png",
+          "zoomFrom": 1.12,
+          "zoomTo": 1.34,
+          "panX": [4, 2],
+          "panY": [8, 10],
+          "highlights": [
+            { "x": 52, "y": 23, "w": 17, "h": 17, "style": "yellow_hl", "delayFrames": 4 }
+          ],
+          "badge": "Forbes报道 · 黄仁勋与妻子洛丽"
+        },
+        {
+          "ratio": 0.36,
+          "text": "八亿多股早装进家族生前信托",
+          "sceneType": "spotlight_doc",
+          "asset": "31_sec_form4_trusts.png",
+          "zoomFrom": 1.14,
+          "zoomTo": 1.44,
+          "panX": [8, 12],
+          "panY": [-2, -6],
+          "highlights": [
+            { "x": 3, "y": 53, "w": 83, "h": 14, "style": "red_box", "delayFrames": 4 }
+          ],
+          "badge": "SEC附注铁证 · 1995年5月1日设立生前信托"
+        },
+        {
+          "ratio": 0.34,
+          "text": "核心股权与CEO职位彻底隔离！",
+          "sceneType": "firewall_card",
+          "firewallCard": {
+            "bgAsset": "22_huang_center_stanford.jpg",
+            "leftTitle": "CEO 头衔 / 工牌",
+            "leftValue": "一夜剥离",
+            "dividerLabel": "1995信托隔离墙",
+            "rightTitle": "8亿+ 家族信托股权",
+            "rightValue": "万亿稳坐钓鱼台",
+            "rightAccent": "gold"
+          }
+        }
       ]
     },
     {
-      "id": "sc05_congress",
-      "badge": "美国国会特别委员会",
-      "headline": "鹰派逼宫算力军火商",
-      "subheadline": "谁在试图为对华定制芯片留后门，谁就会成为靶子",
-      "narration": "这句大实话，彻底惹毛了华盛顿鹰派。在美国国会战略竞争委员会眼里，AI算力就是新时代的核武器。一个总想在商业上左右逢源、不断推出特供版芯片的华人创始人，成了他们眼里最大的不确定因素。",
-      "asset": "07_house_committee.png",
-      "highlights": [
-        { "x": 8, "y": 28, "w": 84, "h": 46, "style": "red_box", "delayFrames": 14 }
+      "id": "05",
+      "narration": "就算今天不干CEO，既触发不了强制贱卖，外人更休想趁火打劫！甚至超两万员工联名请愿留他，连马斯克都公开喊话：算我一个，我也签！",
+      "tts": "就算今天不干 C E O，既触发不了强制贱卖，外人更休想趁火打劫！甚至超两万员工联名请愿留他，连马斯克都公开喊话：算我一个，我也签！",
+      "pause": 0.16,
+      "shots": [
+        {
+          "ratio": 0.26,
+          "text": "就算卸任也绝不触发强制贱卖",
+          "sceneType": "real_media",
+          "asset": "50_sina_trust_1995.png",
+          "zoomFrom": 1.08,
+          "zoomTo": 1.28,
+          "panY": [4, -4],
+          "badge": "新浪财经 · 多层信托与LLC架构锁死"
+        },
+        {
+          "ratio": 0.24,
+          "text": "外人更休想借机趁火打劫！",
+          "sceneType": "real_video",
+          "asset": "vid_jensen_closeup.mp4",
+          "badge": "现场实拍 · 硅谷传奇掌门人"
+        },
+        {
+          "ratio": 0.25,
+          "text": "超2.3万员工联名请愿留他",
+          "sceneType": "spotlight_doc",
+          "asset": "52_sohu_stand_petition.png",
+          "zoomFrom": 1.12,
+          "zoomTo": 1.32,
+          "panX": [10, 14],
+          "panY": [12, 16],
+          "highlights": [
+            { "x": 0, "y": 1, "w": 36, "h": 7, "style": "yellow_hl", "delayFrames": 4 }
+          ],
+          "badge": "Stand with Jensen · 超2.3万人联名"
+        },
+        {
+          "ratio": 0.25,
+          "text": "连马斯克都公开喊话：我也签！",
+          "sceneType": "spotlight_doc",
+          "asset": "53_163_musk_sign.png",
+          "zoomFrom": 1.08,
+          "zoomTo": 1.28,
+          "panX": [4, 6],
+          "panY": [4, 2],
+          "highlights": [
+            { "x": 16, "y": 30, "w": 62, "h": 22, "style": "red_box", "delayFrames": 4 }
+          ],
+          "badge": "金融界快讯 · 马斯克公开表态签署请愿"
+        }
       ]
     },
     {
-      "id": "sc06_board",
-      "badge": "英伟达董事会火线换帅",
-      "headline": "换上绝对服从的看守者",
-      "subheadline": "技术狂人退场，合规官僚接管算力帝国",
-      "narration": "所以你看懂了吗？私德丑闻只是摆在台面上的手术刀，真正的目的是换帅。把带有強烈个人意志的创始人请出局，换上对华盛顿监管绝对服从的职业经理人，算力帝国从此彻底站队。",
-      "asset": "04_nvidia_official_press.png",
-      "highlights": [
-        { "x": 6, "y": 20, "w": 88, "h": 52, "style": "yellow_hl", "delayFrames": 14 }
+      "id": "06",
+      "narration": "看懂这一局才叫人间清醒：名声、头衔、甚至聚光灯，全都是随时会被收回的光环；只有写进底层架构的资产，才是谁也抢不走的铁饭碗！",
+      "tts": "看懂这一局才叫人间清醒：名声、头衔、甚至聚光灯，全都是随时会被收回的光环；只有写进底层架构的资产，才是谁也抢不走的铁饭碗！",
+      "pause": 0.16,
+      "shots": [
+        {
+          "ratio": 0.32,
+          "text": "看懂这一局才叫真的人间清醒",
+          "sceneType": "real_media",
+          "asset": "02_jensen_sc18.jpg",
+          "zoomFrom": 1.04,
+          "zoomTo": 1.16
+        },
+        {
+          "ratio": 0.34,
+          "text": "名声和头衔只是随时收回的光环",
+          "sceneType": "real_media",
+          "asset": "23_elon_musk.jpg",
+          "zoomFrom": 1.05,
+          "zoomTo": 1.16
+        },
+        {
+          "ratio": 0.34,
+          "text": "写进底层架构的资产才是铁饭碗！",
+          "sceneType": "real_media",
+          "asset": "50b_sina_trust_body.png",
+          "zoomFrom": 1.10,
+          "zoomTo": 1.30,
+          "panY": [4, -6],
+          "badge": "底层逻辑 · 结构化资产超越个人职位"
+        }
       ]
     },
     {
-      "id": "sc07_outro",
-      "badge": "时代分水岭 · 终局启示",
-      "headline": "硅谷全球化彻底谢幕",
-      "subheadline": "放弃幻想，加速国产全栈算力突围",
-      "narration": "黄仁勋的谢幕，标志着硅谷技术全球化时代的彻底终结。当商业逻辑完全让位于大国安全博弈，任何中间地带都将被清空。看懂这盘大棋，你就看懂了未来十年全球科技战的真正走向！",
-      "asset": "02_jensen_sc18.jpg"
+      "id": "07",
+      "narration": "普通老板靠肉身苦熬守江山，人一停全归零；顶级狠人早就做完了两道隔离：财富靠家族信托防爆雷，业务靠自动系统去个人化！",
+      "tts": "普通老板靠肉身苦熬守江山，人一停全归零；顶级狠人早就做完了两道隔离：财富靠家族信托防爆雷，业务靠自动系统去个人化！",
+      "pause": 0.15,
+      "shots": [
+        {
+          "ratio": 0.32,
+          "text": "普通老板靠肉身苦熬守江山",
+          "sceneType": "real_media",
+          "asset": "24_nyse_floor.jpg",
+          "zoomFrom": 1.05,
+          "zoomTo": 1.18,
+          "badge": "华尔街交易大厅 · 人停即归零"
+        },
+        {
+          "ratio": 0.34,
+          "text": "顶级狠人早就做完了两道隔离",
+          "sceneType": "real_video",
+          "asset": "vid_ai_action.mp4",
+          "badge": "实操录屏 · 自动化系统接管业务流"
+        },
+        {
+          "ratio": 0.34,
+          "text": "信托防财富爆雷，系统去个人化！",
+          "sceneType": "firewall_card",
+          "firewallCard": {
+            "bgAsset": "12_nvidia_gpu.jpg",
+            "leftTitle": "01 · 锁财富",
+            "leftValue": "家族信托防爆雷",
+            "dividerLabel": "双层护城河",
+            "rightTitle": "02 · 锁业务",
+            "rightValue": "AI系统去个人化",
+            "rightAccent": "green"
+          }
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "narration": "别光替万亿富豪操心八卦了，先问自己一句：如果今天你突然离开工位七天，你的生意和收入，还能自己转吗？",
+      "tts": "别光替万亿富豪操心八卦了，先问自己一句：如果今天你突然离开工位七天，你的生意和收入，还能自己转吗？",
+      "pause": 0.0,
+      "shots": [
+        {
+          "ratio": 0.30,
+          "text": "别光替万亿富豪操心八卦了",
+          "sceneType": "real_media",
+          "asset": "09_jensen_stanford.jpg",
+          "zoomFrom": 1.04,
+          "zoomTo": 1.15
+        },
+        {
+          "ratio": 0.35,
+          "text": "如果今天你突然离开工位七天",
+          "sceneType": "real_video",
+          "asset": "vid_ai_workflow.mp4",
+          "badge": "无人值守 · AI工作流24小时自动运转"
+        },
+        {
+          "ratio": 0.35,
+          "text": "你的生意和收入，还能自己转吗？",
+          "sceneType": "cta_question",
+          "ctaCard": {
+            "bgAsset": "20_jensen_stanford_2026.jpg",
+            "eyebrow": "留给每位创业者的灵魂拷问",
+            "question": "离开工位 7 天，你的系统还能自己转吗？"
+          }
+        }
+      ]
     }
   ]
 }
