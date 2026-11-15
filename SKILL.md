@@ -1,6 +1,6 @@
 ---
 name: trending-news-video
-version: 2.0.0
+version: "2.0.1"
 description: >
   汇芯·热点新闻深扒视频总控 v2.0（10w+ 爆款切角方法论 + 100% JSON 数据驱动 2s 高频快切 + 全画幅聚光灯原彩取证 + 16:9 横屏正片与 3:4 竖版品牌红封面内嵌管线）。
   融合 GitHub 顶流开源调查视频架构（htlin222/vox-styled-reels 聚光灯灰化划重点、

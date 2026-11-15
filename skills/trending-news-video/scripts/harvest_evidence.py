@@ -122,13 +122,38 @@ def convert_to_1080p_mp4(src: Path, dst: Path, start_sec: float = 0.0, duration_
     print(f"🎬 Converted 1080p MP4 clip: {dst.name} ({dst.stat().st_size // 1024} KB)")
 
 
+def _find_chrome_bin() -> str | None:
+    env_c = os.environ.get("CHROME_BIN", "").strip()
+    if env_c and os.path.exists(env_c):
+        return env_c
+    for cmd in ("google-chrome", "chrome", "chromium", "chromium-browser", "msedge"):
+        hit = shutil.which(cmd)
+        if hit:
+            return hit
+    pf = os.environ.get("ProgramFiles", r"C:\Program Files")
+    pf86 = os.environ.get("ProgramFiles(x86)", r"C:\Program Files (x86)")
+    lad = os.environ.get("LOCALAPPDATA", "")
+    for cand in [
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+        os.path.join(pf, "Google", "Chrome", "Application", "chrome.exe"),
+        os.path.join(pf86, "Google", "Chrome", "Application", "chrome.exe"),
+        os.path.join(lad, "Google", "Chrome", "Application", "chrome.exe") if lad else "",
+        os.path.join(pf, "Microsoft", "Edge", "Application", "msedge.exe"),
+        "/usr/bin/google-chrome",
+        "/usr/bin/chromium",
+    ]:
+        if cand and os.path.exists(cand):
+            return cand
+    return None
+
+
 def capture_web_screenshots_python(sources: list):
     from playwright.sync_api import sync_playwright
 
-    chrome_mac = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    chrome_exe = _find_chrome_bin()
     launch_kwargs = {"headless": True}
-    if os.path.exists(chrome_mac):
-        launch_kwargs["executable_path"] = chrome_mac
+    if chrome_exe:
+        launch_kwargs["executable_path"] = chrome_exe
 
     with sync_playwright() as p:
         try:
@@ -184,19 +209,20 @@ def capture_web_screenshots(sources: list, out_dir: Path):
     except ImportError:
         pass
 
-    # Fallback to local video-hub venv python if present
-    vh_py = Path.home() / "video-hub/.venv/bin/python"
-    if vh_py.exists() and Path(sys.executable).resolve() != vh_py.resolve():
-        tmp_manifest = out_dir / "_web_sources.json"
-        tmp_manifest.write_text(json.dumps({"evidence_sources": sources}, ensure_ascii=False), encoding="utf-8")
-        try:
-            subprocess.run(
-                [str(vh_py), str(Path(__file__).resolve()), "--config", str(tmp_manifest), "--out-dir", str(out_dir)],
-                check=True,
-            )
-            return
-        finally:
-            tmp_manifest.unlink(missing_ok=True)
+    # Fallback to local video-hub venv python if present (Windows or POSIX)
+    for rel_py in (".venv/Scripts/python.exe", ".venv/bin/python"):
+        vh_py = Path.home() / "video-hub" / rel_py
+        if vh_py.exists() and Path(sys.executable).resolve() != vh_py.resolve():
+            tmp_manifest = out_dir / "_web_sources.json"
+            tmp_manifest.write_text(json.dumps({"evidence_sources": sources}, ensure_ascii=False), encoding="utf-8")
+            try:
+                subprocess.run(
+                    [str(vh_py), str(Path(__file__).resolve()), "--config", str(tmp_manifest), "--out-dir", str(out_dir)],
+                    check=True,
+                )
+                return
+            finally:
+                tmp_manifest.unlink(missing_ok=True)
 
     raise RuntimeError(
         "Playwright is not installed in the active Python environment. "

@@ -7,10 +7,21 @@ import argparse
 import json
 import shutil
 import subprocess
+import sys
 from pathlib import Path
 
 VIDEO_HUB_DIR = Path.home() / "video-hub"
-HUB_PY = VIDEO_HUB_DIR / ".venv/bin/python"
+HUB_PY = next(
+    (
+        p
+        for p in (
+            VIDEO_HUB_DIR / ".venv" / "Scripts" / "python.exe",
+            VIDEO_HUB_DIR / ".venv" / "bin" / "python",
+        )
+        if p.is_file()
+    ),
+    Path(sys.executable),
+)
 
 
 def main():
